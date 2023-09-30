@@ -9,16 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.1.0",
+    "@prisma/client": "^5.3.1",
+    "cloudinary": "^1.41.0",
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.1.1",
+    "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "prisma": "^5.3.1",
+    "typescript": "latest"
   }
 }
