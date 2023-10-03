@@ -1,50 +1,50 @@
-import {prismaClient as prisma} from '@/config/prismaClient'
-import { NextResponse } from 'next/server';
+// import {prismaClient as prisma} from '@/config/prismaClient'
+// import { NextResponse } from 'next/server';
 
 
-export const createUser = async (req: Request, res: Response): Promise<Response> => {
+// export const createUser = async (req: Request, res: Response): Promise<Response> => {
 
-    try {
-    const { name, email } = req.body;
+//     try {
+//     const { name, email } = req.body;
 
 
-        const user = await prisma.users.findFirst({
-            where: {
-                email: email
-            }
-        })
-        if (user) {
+//         const user = await prisma.users.findFirst({
+//             where: {
+//                 email: email
+//             }
+//         })
+//         if (user) {
             
-            return NextResponse.json('User already exists')
-        }
+//             return NextResponse.json('User already exists')
+//         }
 
-        const newUser = await prisma.users.create({
-            data: { email: email, name: name},
-        });
+//         const newUser = await prisma.users.create({
+//             data: { email: email, name: name},
+//         });
 
-        return NextResponse.json(newUser, {status:201});
-    } catch (error) {
-        return NextResponse.json(error);
-    }
-};
+//         return NextResponse.json(newUser, {status:201});
+//     } catch (error) {
+//         return NextResponse.json(error);
+//     }
+// };
 
 
-export const getAllUsers = async (req: Request, res: Response): Promise<Response> => {
-    try {
+// export const getAllUsers = async (req: Request, res: Response): Promise<Response> => {
+//     try {
 
-        const allUsers = await prisma.users.findMany({
-            include: {
-                movies: {
-                    include: {
-                        genres: true
-                    }
-                }
-            }
-        });
+//         const allUsers = await prisma.users.findMany({
+//             include: {
+//                 movies: {
+//                     include: {
+//                         genres: true
+//                     }
+//                 }
+//             }
+//         });
 
-        return NextResponse.json( allUsers, {status:200} );
-    } catch (error) {
-        return NextResponse.json(error, {status:500});
-    }
-};
+//         return NextResponse.json( allUsers, {status:200} );
+//     } catch (error) {
+//         return NextResponse.json(error, {status:500});
+//     }
+// };
 
