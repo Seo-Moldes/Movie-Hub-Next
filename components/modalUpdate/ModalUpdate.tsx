@@ -1,9 +1,10 @@
+"use client"
+import { editMovie } from "@/service/movies.service";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { useState } from "react";
-import { ModalUpdateButton, ModalUpdateContainer, ModalUpdateContent, ModalUpdateStyles } from "./modalUpdate.styles";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { editMovie } from "../../api/editMovie";
-import { VITE_URL_MOVIES } from "../../global/serverUrls";
+import styles from "./modalUpdate.module.css"
+import { useRouter } from "next/navigation";
 
 
 interface MoviesType  {
@@ -11,23 +12,42 @@ interface MoviesType  {
   title: string;
   score: number;
   year: number;
-  genres: string[];
+  genres: GenreType[];
   imageId: string;
   imageUrl: string
 } 
 
+
+interface GenreType {
+  id: string;
+  genre: string;
+  createdAt: string;
+  updatedAt: string;
+  moviesId: string[];
+}
+
+
+
 export const ModalUpdate = ({id, title, score, year, genres}: MoviesType) => {
 
+const router = useRouter();
+
+
   const [modalIsOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { user } = useUser();
   const {register, handleSubmit} = useForm({defaultValues:{title, score, year, genres}});
 
 
 const onsubmit = handleSubmit( (data: any) => {
 
-  const url = `${VITE_URL_MOVIES}/${id}`;
+  console.log(data)
+  console.log(id)
+
   
-  editMovie(url, data, getAccessTokenSilently)
+  editMovie(id, data )
+
+  router.refresh();
+  
   setIsOpen(!modalIsOpen);
 })
 
@@ -39,43 +59,42 @@ const onsubmit = handleSubmit( (data: any) => {
 
   return (
 
-    <ModalUpdateStyles>
-      {isAuthenticated && (<button className="modal__btn-open" onClick={toggleModal}> Modify </button>)}
+    <div className={styles.modal}>
+      {user && (<button className={styles.modal__btn_open} onClick={toggleModal}> Modify </button>)}
 
    
       {modalIsOpen && (
-        <ModalUpdateContainer>
-          <ModalUpdateContent>
+        <div className={styles.modal_container} >
+          <div className={styles.modal_content}>
             <h2>Add Movie</h2>
-            <form className="form__modal" onSubmit={onsubmit}>
-              <div className="form__modal-div">
-                <label className="form__modal-div-label" htmlFor="formModalName">Movie Name</label>
-                <input className="form__modal-div-input" type="text" id="formModalName" {...register("title")} />
+            <form className={styles.form__modal} onSubmit={onsubmit}>
+              <div className={styles.form__modal_div} >
+                <label className={styles.label} htmlFor="formModalName">Movie Name</label>
+                <input className={styles.input} type="text" id="formModalName" {...register("title")} />
                 
               </div>
-              <div className="form__modal-div">
-                <label className="form__modal-div-label" htmlFor="formModalScore">Movie Score</label>
-                <input className="form__modal-div-input" type="number" id="formModalScore" {...register("score")}    />
+              <div className={styles.form__modal_div}>
+                <label className={styles.label} htmlFor="formModalScore">Movie Score</label>
+                <input className={styles.input} type="number" id="formModalScore" {...register("score")}    />
               </div>
-              <div className="form__modal-div">
-                <label className="form__modal-div-label" htmlFor="formModalGenre">Movie Genre</label>
-                <input className="form__modal-div-input" type="text" id="formModalGenre" {...register("genres")}   />
+              <div className={styles.form__modal_div}>
+                <label className={styles.label} htmlFor="formModalGenre">Movie Genre</label>
+                <input className={styles.input} type="text" id="formModalGenre" {...register("genres")} />
               </div>
-              <div className="form__modal-div">
-                <label className="form__modal-div-label" htmlFor="formModalYear">Year</label>
-                <input className="form__modal-div-input" type="number" id="formModalYear" {...register("year")}  />
+              <div className={styles.form__modal_div}>
+                <label className={styles.label} htmlFor="formModalYear">Year</label>
+                <input className={styles.input} type="number" id="formModalYear" {...register("year")}  />
               </div>
             
-              <button className="form__modal-btnAddMovie" type="submit">Modify</button>
+              <button className={styles.form__modal_btnAddMovie}  type="submit">Modify</button>
           
-           
             </form>
-            <ModalUpdateButton className="btn_close" onClick={toggleModal}>Close Modal</ModalUpdateButton>
-          </ModalUpdateContent>
-        </ModalUpdateContainer>
+            <button className={styles.button_close} onClick={toggleModal}>Close Modal</button>
+          </div>
+        </div>
       )}
 
 
-    </ModalUpdateStyles>
+    </div>
   )
 }

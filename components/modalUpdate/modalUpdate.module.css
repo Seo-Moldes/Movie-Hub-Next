@@ -1,32 +1,31 @@
-import styled from 'styled-components';
-export const ModalUpdateStyles = styled.div`
-
-.modal__btn-open {
-    width:40px;
-    height:23px;
-    background-color: black;
-    margin-bottom:5px;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 1px 2px 3px
+.modal {
+  display: flex;
 }
 
-.form__modal-btnAddMovie {
+.modal__btn_open {
+  width: 40px;
+  height: 23px;
+  background-color: black;
+  margin-bottom: 5px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px;
+}
 
+.form__modal_btnAddMovie {
   background-color: black;
   color: white;
   border-radius: 5px;
   box-shadow: 1px 2px 3px;
-  margin-top: 5px
+  margin-top: 5px;
 }
 
-.form__modal-btnAddMovie:hover {
-
+.form__modal_btnAddMovie:hover {
   background-color: white;
   color: black;
 }
 
-.modal__btn-open:hover {
+.modal__btn_open:hover {
   background-color: white;
   color: black;
 }
@@ -36,28 +35,24 @@ export const ModalUpdateStyles = styled.div`
   color: white;
   border-radius: 5px;
   box-shadow: 1px 2px 3px;
-
 }
 
 .btn_close:hover {
   background-color: white;
   color: black;
-
 }
 
 .btn__logout {
-width: 5vw;
-height: 5vh;
+  width: 5vw;
+  height: 5vh;
 }
 
 .btn__login {
-width: 5vw;
-height: 5vh;
+  width: 5vw;
+  height: 5vh;
 }
 
-`;
-
-export const ModalUpdateContainer = styled.div`
+.modal_container {
   position: fixed;
   top: 0;
   left: 0;
@@ -68,33 +63,32 @@ export const ModalUpdateContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-  
-`;
+}
 
-export const ModalUpdateContent = styled.div`
+.modal_content {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  .form__modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-   &-div {
-    display: flex;
-    flex-direction: column;
-    &-label{
-        font-size: 1rem;
-        color: rgba(50, 50, 50, 0.8);
-    }
-   }
+}
+.form__modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  }
-  
-`;
+.form__modal_div {
+  display: flex;
+  flex-direction: column;
+}
 
-export const ModalUpdateButton = styled.button`
+.label {
+  font-size: 1rem;
+  color: rgba(50, 50, 50, 0.8);
+}
+
+.button_close {
   margin-top: 10px;
   padding: 8px 16px;
   background-color: #007bff;
@@ -102,8 +96,9 @@ export const ModalUpdateButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-`;
+}
 
-
-
-
+.input {
+  font-size: 1rem;
+  color: white;
+}

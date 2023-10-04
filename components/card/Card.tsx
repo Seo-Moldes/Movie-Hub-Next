@@ -1,55 +1,36 @@
-// import { deleteMovie } from "../../api/deleteMovie";
-// import { ModalUpdate } from "../modalUpdate/ModalUpdate";
-// import { CardStyles } from "./card.styles"
-
-// import { useUser } from "@auth0/nextjs-auth0/client";
-import { getSession } from "@auth0/nextjs-auth0";
+"use client"
 import styles from "./card.module.css";
-// import { ModalUpdate } from "../modalUpdate/ModalUpdate";
-import Image from "next/image";
+import { ModalUpdate } from "../modalUpdate/ModalUpdate";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { MoviesType } from "@/types/movies.types";
+import { deleteMovie } from "@/service/movies.service";
+import { useRouter } from "next/navigation";
+import async from '../../app/page';
 
-
-export interface MoviesType {
-  id: string;
-  title: string;
-  score: number;
-  year: number;
-  country: string;
-  imageId: string;
-  genres: GenreType[];
-  genresArray: string[];
-  createdAt: string;
-  updatedAt: string;
-  usersId: string;
-  imageUrl: string;
-}
-
-interface GenreType {
-  id: string;
-  genre: string;
-  createdAt: string;
-  updatedAt: string;
-  moviesId: string[];
-}
 
 export const Card = ({
   id,
   title,
   imageUrl,
+  imageId,
   genresArray,
+  genres,
   score,
   year,
+  isPublic
 }: MoviesType) => {
-  // const url = `http://localhost:3000/movies/${props.id}`;
+  
+  const {user} = useUser();
+  const isPublicMovie = isPublic === true;
+ const router = useRouter();
 
-  const session = getSession();
+ const handleDeleteById = async (id:string) => {
 
-  // const handleDelete = async () => {
+deleteMovie(id);
+router.refresh();
 
-  //   await deleteMovie(url, getAccessTokenSilently)
-  //   props.fetchData()
+ }
 
-  // }
 
   return (
     <div className={styles.card}>
@@ -65,8 +46,25 @@ export const Card = ({
       </div>
 
       <div className={styles.card__div3}>
-        {/* {session && <ModalUpdate id={props.id} title={props.title} score={props.score} year={props.year} genres={props.genres[0] ? props.genres[props.genres.length - 1].genre : ''} imageId={props.imageId} imageUrl={props.imageUrl} />}
-        {session && <button className="button_delete" onClick={handleDelete}>Delete</button>} */}
+        {!isPublicMovie && (
+          <>
+          <ModalUpdate
+          
+            id={id}
+            title={title}
+            score={score}
+            year={year}
+            genres={genres}
+            imageId={imageId}
+            imageUrl={imageUrl}
+          />
+          
+          <button className={styles.button__delete} onClick={()=>handleDeleteById(id)}>
+            Delete
+          </button>
+          </>
+        )}
+       
       </div>
     </div>
   );

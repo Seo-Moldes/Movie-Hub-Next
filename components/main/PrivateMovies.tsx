@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { FetchApi } from "../../api/fetchApi";
 import { Card, MoviesType } from "..";
+import { ModalUpdate } from "../modalUpdate/ModalUpdate";
 
 
 export const PrivateMovies = () => {

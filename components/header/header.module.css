@@ -1,7 +1,6 @@
-/* import { imageFondo4 } from '../../assets/img'; */
-
 .header {
   display: grid;
+  height: 12vh;
   background-color: gray;
   grid-area: 1 / 1 / 2 / 6;
   grid-template-columns: repeat(3, 1fr);
@@ -73,4 +72,24 @@
 .moviehub {
   color: black;
   font-size: 40px;
+}
+
+.btn_log {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.btn_log:hover {
+
+  background-color: white;
+  color: black;
 }

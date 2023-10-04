@@ -30,6 +30,7 @@ const HomePage = async (props: Props) => {
             updatedAt={movie.updatedAt}
             usersId={movie.usersId}
             imageUrl={movie.imageUrl}
+            isPublic={false}
           />
         ))}
       </div>

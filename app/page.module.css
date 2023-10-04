@@ -12,11 +12,13 @@
 
 .mainDiv {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  height: 60vh;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
   flex-wrap: wrap;
+  margin: 0 auto;
 
 }
 

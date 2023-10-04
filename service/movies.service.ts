@@ -1,3 +1,4 @@
+
 export const createMovie = async (url: string, data: any) => {
 
     // const token = await getToken();
@@ -15,7 +16,7 @@ export const createMovie = async (url: string, data: any) => {
 
         const response = await fetch(url, {
 
-            method: "POST",
+            method: "POST", cache: "no-store",
             // headers: {
 
             //     authorization: `Bearer ${token}`,
@@ -35,20 +36,19 @@ export const createMovie = async (url: string, data: any) => {
     }
 }
 
-export const deleteMovie = async (url: string, getToken: any) => {
+export const deleteMovie = async (url: string) => {
 
-    const token = await getToken();
 
     try {
 
-        const response = await fetch(url, {
+        const response = await fetch(`http://localhost:3000/movies/${url}`, {
 
-            method: "DELETE",
-            headers: {
+            method: "DELETE", cache: "no-store",
+            // headers: {
                 
-                authorization: `Bearer ${token}`,
+            //     authorization: `Bearer ${token}`,
                 
-            },
+            // },
         })
 
         if (response.ok) {
@@ -63,9 +63,10 @@ export const deleteMovie = async (url: string, getToken: any) => {
     }
 }
 
-export const editMovie = async (url: string, data: any, getToken: any) => {
+export const editMovie = async (id: string, data: any) => {
 
-    const token = await getToken();
+const url = "http://localhost:3000/movies"
+    // const token = await getToken();
     const formData = new FormData();
 
     formData.append("title", data.title)
@@ -75,13 +76,13 @@ export const editMovie = async (url: string, data: any, getToken: any) => {
    
     try {
 
-        const response = await fetch(url, {
+        const response = await fetch(`${url}/${id}`,{
 
-            method: "PUT",
-            headers: {
+            method: "PUT", cache: "no-store",
+            // headers: {
 
-                authorization: `Bearer ${token}`,
-            },
+            //     authorization: `Bearer ${token}`,
+            // },
             body: formData
         })
 
@@ -102,7 +103,7 @@ export const FetchApi = async () => {
     // const token = await getToken();
     try {
         const response = await fetch( "http://localhost:3000/movies", {
-            method: "GET",
+            method: "GET", cache: "no-store",
             // headers: {
             //     authorization: `Bearer ${token}`
             // },
@@ -127,7 +128,7 @@ export const postApi = async (url: string, data: any, getToken: any) => {
 
         const response = await fetch(url, {
 
-            method: "POST",
+            method: "POST", cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${token}`,

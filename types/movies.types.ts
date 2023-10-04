@@ -3,7 +3,6 @@ export interface MoviesType {
     title: string;
     score: number;
     year: number;
-    country: string;
     imageId: string;
     genres: GenreType[];
     genresArray: string[];
@@ -11,6 +10,7 @@ export interface MoviesType {
     updatedAt: string;
     usersId: string;
     imageUrl: string;
+    isPublic: boolean;
   }
   
   interface GenreType {

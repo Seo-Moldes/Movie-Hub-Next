@@ -1,5 +1,3 @@
-// import { Modal } from '../modal/Modal';
-
 import Link from "next/link";
 import styles from "./header.module.css";
 import { getSession } from "@auth0/nextjs-auth0";
@@ -18,7 +16,7 @@ export const Header = async () => {
       <div className={styles.div_header2}></div>
       <div className={styles.div_header3}>
         {!session ? (
-          <a href="/api/auth/login">Login</a>
+          <a className={styles.btn_log} href="/api/auth/login">Login</a>
         ) : (
           <div className={styles.div_header3_div}>
             <a className={styles.div_header3_logout} href="/api/auth/logout">
