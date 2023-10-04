@@ -1,3 +1,4 @@
+import { MoviesType } from "@/types/movies.types"
 
 export const createMovie = async (url: string, data: any) => {
 
@@ -11,6 +12,8 @@ export const createMovie = async (url: string, data: any) => {
     formData.append("year", data.Year)
     formData.append("score", data.Score)
     formData.append("image", data.Image[0])
+    formData.append("description", data.Description)
+
 
     try {
 
@@ -73,6 +76,7 @@ const url = "http://localhost:3000/movies"
     formData.append("genres", data.genres)
     formData.append("year", data.year)
     formData.append("score", data.score)
+    formData.append("description", data.description)
    
     try {
 
@@ -112,6 +116,27 @@ export const FetchApi = async () => {
         if (response.ok) {
             const data = await response.json();
           return data;
+        } else {
+            throw new Error("Network response was not ok.");
+        }
+    } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+    }
+};
+
+export const GetMovieById = async (id: string) => {
+    // const token = await getToken();
+    try {
+        const response = await fetch( `http://localhost:3000/movies/${id}`, {
+            method: "GET", cache: "no-store",
+            // headers: {
+            //     authorization: `Bearer ${token}`
+            // },
+        });
+
+        if (response.ok) {
+            return await response.json() as MoviesType;
+         
         } else {
             throw new Error("Network response was not ok.");
         }

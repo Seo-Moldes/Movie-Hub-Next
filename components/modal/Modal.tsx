@@ -82,6 +82,17 @@ const router = useRouter();
                 />
               </div>
               <div className={styles.div}>
+                <label className={styles.label} htmlFor="formModalDescription">
+                  Description
+                </label>
+                <input
+                  className={styles.input}
+                  type="text"
+                  id="formModalDescription"
+                  {...register("Description")}
+                />
+              </div>
+              <div className={styles.div}>
                 <label className={styles.label} htmlFor="formModalFile">
                   Upload File
                 </label>

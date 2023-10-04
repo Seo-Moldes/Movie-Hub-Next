@@ -17,7 +17,6 @@ export default async function Home() {
             title={movie.title}
             score={movie.score}
             year={movie.year}
-            country={movie.country}
             imageId={movie.imageId}
             genres={movie.genres}
             genresArray={movie.genresArray}
@@ -26,6 +25,7 @@ export default async function Home() {
             usersId={movie.usersId}
             imageUrl={movie.imageUrl}
             isPublic={true}
+            description={movie.description}
           />
         ))}
       </div>

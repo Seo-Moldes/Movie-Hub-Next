@@ -5,7 +5,6 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { MoviesType } from "@/types/movies.types";
 import { deleteMovie } from "@/service/movies.service";
 import { useRouter } from "next/navigation";
-import async from '../../app/page';
 
 
 export const Card = ({
@@ -17,7 +16,8 @@ export const Card = ({
   genres,
   score,
   year,
-  isPublic
+  isPublic,
+  description
 }: MoviesType) => {
   
   const {user} = useUser();
@@ -48,6 +48,10 @@ router.refresh();
       <div className={styles.card__div3}>
         {!isPublicMovie && (
           <>
+          <a href={`/moviepage/${id}`} className={styles.button__details}>
+            Details
+          </a>
+
           <ModalUpdate
           
             id={id}
@@ -57,6 +61,7 @@ router.refresh();
             genres={genres}
             imageId={imageId}
             imageUrl={imageUrl}
+            description={description}
           />
           
           <button className={styles.button__delete} onClick={()=>handleDeleteById(id)}>

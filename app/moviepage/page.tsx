@@ -22,7 +22,6 @@ const HomePage = async (props: Props) => {
             title={movie.title}
             score={movie.score}
             year={movie.year}
-            country={movie.country}
             imageId={movie.imageId}
             genres={movie.genres}
             genresArray={movie.genresArray}
@@ -31,6 +30,7 @@ const HomePage = async (props: Props) => {
             usersId={movie.usersId}
             imageUrl={movie.imageUrl}
             isPublic={false}
+            description={movie.description}
           />
         ))}
       </div>

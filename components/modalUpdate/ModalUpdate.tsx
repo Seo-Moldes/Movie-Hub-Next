@@ -14,7 +14,8 @@ interface MoviesType  {
   year: number;
   genres: GenreType[];
   imageId: string;
-  imageUrl: string
+  imageUrl: string;
+  description: string;
 } 
 
 
@@ -28,14 +29,14 @@ interface GenreType {
 
 
 
-export const ModalUpdate = ({id, title, score, year, genres}: MoviesType) => {
+export const ModalUpdate = ({id, title, score, year, genres, description }: MoviesType) => {
 
 const router = useRouter();
 
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useUser();
-  const {register, handleSubmit} = useForm({defaultValues:{title, score, year, genres}});
+  const {register, handleSubmit} = useForm({defaultValues:{title, score, year, genres, description}});
 
 
 const onsubmit = handleSubmit( (data: any) => {
@@ -84,6 +85,10 @@ const onsubmit = handleSubmit( (data: any) => {
               <div className={styles.form__modal_div}>
                 <label className={styles.label} htmlFor="formModalYear">Year</label>
                 <input className={styles.input} type="number" id="formModalYear" {...register("year")}  />
+              </div>
+              <div className={styles.form__modal_div}>
+                <label className={styles.label} htmlFor="formModalDescription">Description</label>
+                <textarea className={styles.input} id="formModalDescription" {...register("description")}  />
               </div>
             
               <button className={styles.form__modal_btnAddMovie}  type="submit">Modify</button>

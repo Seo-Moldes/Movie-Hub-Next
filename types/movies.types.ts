@@ -11,6 +11,7 @@ export interface MoviesType {
     usersId: string;
     imageUrl: string;
     isPublic: boolean;
+    description: string;
   }
   
   interface GenreType {
