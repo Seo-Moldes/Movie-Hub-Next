@@ -11,10 +11,10 @@ export const Modal = () => {
   const { user } = useUser();
   const { register, handleSubmit } = useForm();
   const router = useRouter();
-  const onsubmit = handleSubmit((data: any) => {
+  const onsubmit = handleSubmit(async(data: any) => {
     const url = `http://localhost:3000/movies/${user?.email}`;
 
-    createMovie(url, data);
+    await createMovie(url, data);
     router.refresh();
     setIsOpen(!modalIsOpen);
   });

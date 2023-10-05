@@ -1,3 +1,4 @@
+"use client"
 import styles from "./page.module.css";
 import { FetchPublicApi } from "@/service/movies.service";
 import { Card } from "@/components/card/Card";

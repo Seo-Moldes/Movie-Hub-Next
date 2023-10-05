@@ -31,7 +31,10 @@ interface GenreType {
 export const ModalUpdate = ({ id, title, score, year, genres, description }: MoviesType) => {
 
   const router = useRouter();
+  console.log(genres)
 
+  const targetGenre = genres.length > 0 ? genres[0].genre : ''
+ 
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useUser();

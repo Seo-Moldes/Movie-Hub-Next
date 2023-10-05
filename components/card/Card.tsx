@@ -31,7 +31,7 @@ export const Card = ({
 
   }
 
-
+console.log(genres)
   return (
     <div className={styles.card}>
       <div className={styles.card__div1}>
