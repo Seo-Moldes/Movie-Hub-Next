@@ -7,7 +7,7 @@ import styles from "./modalUpdate.module.css"
 import { useRouter } from "next/navigation";
 
 
-interface MoviesType  {
+interface MoviesType {
   id: string;
   title: string;
   score: number;
@@ -16,7 +16,7 @@ interface MoviesType  {
   imageId: string;
   imageUrl: string;
   description: string;
-} 
+}
 
 
 interface GenreType {
@@ -28,30 +28,28 @@ interface GenreType {
 }
 
 
+export const ModalUpdate = ({ id, title, score, year, genres, description }: MoviesType) => {
 
-export const ModalUpdate = ({id, title, score, year, genres, description }: MoviesType) => {
-
-const router = useRouter();
+  const router = useRouter();
 
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useUser();
-  const {register, handleSubmit} = useForm({defaultValues:{title, score, year, genres, description}});
+  const { register, handleSubmit } = useForm({ defaultValues: { title, score, year, genres, description } });
 
 
-const onsubmit = handleSubmit( (data: any) => {
+  const onsubmit = handleSubmit((data: any) => {
 
-  console.log(data)
-  console.log(id)
+    console.log(data)
+    console.log(id)
 
-  
-  editMovie(id, data )
 
-  router.refresh();
-  
-  setIsOpen(!modalIsOpen);
-})
+    editMovie(id, data)
 
+    router.refresh();
+
+    setIsOpen(!modalIsOpen);
+  })
 
 
   function toggleModal() {
@@ -63,7 +61,7 @@ const onsubmit = handleSubmit( (data: any) => {
     <div className={styles.modal}>
       {user && (<button className={styles.modal__btn_open} onClick={toggleModal}> Modify </button>)}
 
-   
+
       {modalIsOpen && (
         <div className={styles.modal_container} >
           <div className={styles.modal_content}>
@@ -72,11 +70,11 @@ const onsubmit = handleSubmit( (data: any) => {
               <div className={styles.form__modal_div} >
                 <label className={styles.label} htmlFor="formModalName">Movie Name</label>
                 <input className={styles.input} type="text" id="formModalName" {...register("title")} />
-                
+
               </div>
               <div className={styles.form__modal_div}>
                 <label className={styles.label} htmlFor="formModalScore">Movie Score</label>
-                <input className={styles.input} type="number" id="formModalScore" {...register("score")}    />
+                <input className={styles.input} type="number" id="formModalScore" {...register("score")} />
               </div>
               <div className={styles.form__modal_div}>
                 <label className={styles.label} htmlFor="formModalGenre">Movie Genre</label>
@@ -84,15 +82,15 @@ const onsubmit = handleSubmit( (data: any) => {
               </div>
               <div className={styles.form__modal_div}>
                 <label className={styles.label} htmlFor="formModalYear">Year</label>
-                <input className={styles.input} type="number" id="formModalYear" {...register("year")}  />
+                <input className={styles.input} type="number" id="formModalYear" {...register("year")} />
               </div>
               <div className={styles.form__modal_div}>
                 <label className={styles.label} htmlFor="formModalDescription">Description</label>
-                <textarea className={styles.input} id="formModalDescription" {...register("description")}  />
+                <textarea className={styles.input} id="formModalDescription" {...register("description")} />
               </div>
-            
-              <button className={styles.form__modal_btnAddMovie}  type="submit">Modify</button>
-          
+
+              <button className={styles.form__modal_btnAddMovie} type="submit">Modify</button>
+
             </form>
             <button className={styles.button_close} onClick={toggleModal}>Close Modal</button>
           </div>

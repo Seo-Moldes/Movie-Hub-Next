@@ -7,9 +7,7 @@ type Props = {
 
 const AuthProvider = async ({ children }: Props) => {
   const session = await getSession();
-//   if(!session){
-//     return 
-//   }
+
   return <>{children}</>;
 };
 

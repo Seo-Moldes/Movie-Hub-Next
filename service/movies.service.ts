@@ -2,10 +2,7 @@ import { MoviesType } from "@/types/movies.types"
 
 export const createMovie = async (url: string, data: any) => {
 
-    // const token = await getToken();
     const formData = new FormData()
-   
-    
 
     formData.append("title", data.Name)
     formData.append("genres", data.Genre)
@@ -14,62 +11,49 @@ export const createMovie = async (url: string, data: any) => {
     formData.append("image", data.Image[0])
     formData.append("description", data.Description)
 
-
     try {
 
         const response = await fetch(url, {
 
             method: "POST", cache: "no-store",
-            // headers: {
-
-            //     authorization: `Bearer ${token}`,
-            // },
             body: formData
         })
 
         if (response.ok) {
 
-           
         } else {
             throw new Error("No response");
         }
 
     } catch (error) {
-        
+
     }
 }
 
 export const deleteMovie = async (url: string) => {
-
 
     try {
 
         const response = await fetch(`http://localhost:3000/movies/${url}`, {
 
             method: "DELETE", cache: "no-store",
-            // headers: {
-                
-            //     authorization: `Bearer ${token}`,
-                
-            // },
         })
 
         if (response.ok) {
-
 
         } else {
             throw new Error("No response");
         }
 
     } catch (error) {
-        
+
     }
 }
 
 export const editMovie = async (id: string, data: any) => {
 
-const url = "http://localhost:3000/movies"
-    // const token = await getToken();
+    const url = "http://localhost:3000/movies"
+
     const formData = new FormData();
 
     formData.append("title", data.title)
@@ -77,45 +61,37 @@ const url = "http://localhost:3000/movies"
     formData.append("year", data.year)
     formData.append("score", data.score)
     formData.append("description", data.description)
-   
+
     try {
 
-        const response = await fetch(`${url}/${id}`,{
+        const response = await fetch(`${url}/${id}`, {
 
             method: "PUT", cache: "no-store",
-            // headers: {
-
-            //     authorization: `Bearer ${token}`,
-            // },
             body: formData
         })
 
         if (response.ok) {
-
-            
 
         } else {
             throw new Error("No response");
         }
 
     } catch (error) {
-        
+
     }
 }
 
 export const FetchApi = async () => {
-    // const token = await getToken();
+
     try {
-        const response = await fetch( "http://localhost:3000/movies", {
+        const response = await fetch("http://localhost:3000/movies", {
             method: "GET", cache: "no-store",
-            // headers: {
-            //     authorization: `Bearer ${token}`
-            // },
+
         });
 
         if (response.ok) {
             const data = await response.json();
-          return data;
+            return data;
         } else {
             throw new Error("Network response was not ok.");
         }
@@ -125,18 +101,16 @@ export const FetchApi = async () => {
 };
 
 export const GetMovieById = async (id: string) => {
-    // const token = await getToken();
+
     try {
-        const response = await fetch( `http://localhost:3000/movies/${id}`, {
+        const response = await fetch(`http://localhost:3000/movies/${id}`, {
             method: "GET", cache: "no-store",
-            // headers: {
-            //     authorization: `Bearer ${token}`
-            // },
+
         });
 
         if (response.ok) {
             return await response.json() as MoviesType;
-         
+
         } else {
             throw new Error("Network response was not ok.");
         }
@@ -163,26 +137,24 @@ export const postApi = async (url: string, data: any, getToken: any) => {
 
         if (response.ok) {
 
-         
-
         } else {
             throw new Error("No response");
 
         }
 
     } catch (error) {
-        
+
     }
 }
 
 export const FetchPublicApi = async () => {
-   
+
     try {
-        const response = await fetch( "http://localhost:3000/publicmovies");
+        const response = await fetch("http://localhost:3000/publicmovies");
 
         if (response.ok) {
             const data = await response.json();
-          return data;
+            return data;
         } else {
             throw new Error("Network response was not ok.");
         }

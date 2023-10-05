@@ -1,6 +1,5 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import { FetchApi, FetchPublicApi } from "@/service/movies.service";
+import { FetchPublicApi } from "@/service/movies.service";
 import { Card } from "@/components/card/Card";
 import { MoviesType } from "@/types/movies.types";
 

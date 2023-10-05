@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { createMovie } from "@/service/movies.service";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./modal.module.css";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export const Modal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useUser();
   const { register, handleSubmit } = useForm();
-const router = useRouter();
+  const router = useRouter();
   const onsubmit = handleSubmit((data: any) => {
     const url = `http://localhost:3000/movies/${user?.email}`;
 

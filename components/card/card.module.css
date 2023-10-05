@@ -17,6 +17,7 @@
   overflow: hidden;
   padding: 0;
 }
+
 .card__div1_img {
   display: block;
   position: relative;
@@ -61,7 +62,7 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
- 
+
 }
 
 .title_h2 {

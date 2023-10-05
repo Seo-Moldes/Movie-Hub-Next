@@ -19,17 +19,17 @@ export const Card = ({
   isPublic,
   description
 }: MoviesType) => {
-  
-  const {user} = useUser();
+
+  const { user } = useUser();
   const isPublicMovie = isPublic === true;
- const router = useRouter();
+  const router = useRouter();
 
- const handleDeleteById = async (id:string) => {
+  const handleDeleteById = async (id: string) => {
 
-deleteMovie(id);
-router.refresh();
+    deleteMovie(id);
+    router.refresh();
 
- }
+  }
 
 
   return (
@@ -48,28 +48,28 @@ router.refresh();
       <div className={styles.card__div3}>
         {!isPublicMovie && (
           <>
-          <a href={`/moviepage/${id}`} className={styles.button__details}>
-            Details
-          </a>
+            <a href={`/moviepage/${id}`} className={styles.button__details}>
+              Details
+            </a>
 
-          <ModalUpdate
-          
-            id={id}
-            title={title}
-            score={score}
-            year={year}
-            genres={genres}
-            imageId={imageId}
-            imageUrl={imageUrl}
-            description={description}
-          />
-          
-          <button className={styles.button__delete} onClick={()=>handleDeleteById(id)}>
-            Delete
-          </button>
+            <ModalUpdate
+
+              id={id}
+              title={title}
+              score={score}
+              year={year}
+              genres={genres}
+              imageId={imageId}
+              imageUrl={imageUrl}
+              description={description}
+            />
+
+            <button className={styles.button__delete} onClick={() => handleDeleteById(id)}>
+              Delete
+            </button>
           </>
         )}
-       
+
       </div>
     </div>
   );

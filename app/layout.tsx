@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "MovieHub Next",
   description: "This is a moviehub next page by seo moldes",
+  icons: {
+    icon: "/assets/img/pngwing.png"
+  }
 };
 
 export default function RootLayout({
@@ -23,11 +26,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <UserProvider>
           <AuthProvider>
-          <Header />
+            <Header />
 
-          {children}
+            {children}
 
-          <Footer />
+            <Footer />
           </AuthProvider>
         </UserProvider>
       </body>
